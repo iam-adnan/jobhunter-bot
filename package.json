@@ -1,0 +1,30 @@
+{
+  "name": "jobhunter-bot",
+  "version": "1.0.0",
+  "description": "Automated job hunting Discord bot with AI-powered CV tailoring",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test-scraper": "node -e \"const S = require('./jobScraper'); const s = new S(); s.fetchAllJobs().then(j => console.log(JSON.stringify(j.slice(0,2), null, 2)))\"",
+    "test-email": "node -e \"const E = require('./emailSender'); const e = new E(); e.verify().then(console.log)\"",
+    "test-ollama": "node -e \"const axios = require('axios'); axios.post('http://localhost:11434/api/generate', {model:'llama3.1:8b',prompt:'Say hello',stream:false}).then(r=>console.log(r.data.response)).catch(e=>console.error(e.message))\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "axios": "^1.7.0",
+    "cheerio": "^1.0.0",
+    "discord.js": "^14.16.0",
+    "docx": "^9.2.0",
+    "dotenv": "^16.4.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.0",
+    "puppeteer-core": "^23.0.0"
+  },
+  "optionalDependencies": {
+    "puppeteer-core": "^23.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
